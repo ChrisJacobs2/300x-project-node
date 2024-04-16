@@ -1,0 +1,439 @@
+/* I think it would be cool if we made the color scheme based on the
+American flag, since our target "audience" will be Real True Patriots */
+
+body {
+    /* I think some off white color would be the best */
+    background-color: beige;
+    /* Might be feelng this color or something dark greyish (Will) */
+    /* background-color: rgb(32, 32, 32); */
+}
+
+hr {
+    background-color: rgba(0, 0, 0, 0.59);
+    border: 0;
+    margin: 20px;
+}
+
+h1 {
+    position: relative;
+    z-index: 1;
+    color: rgb(114, 24, 24);
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.59);
+    color: white;
+    text-align: center;
+    margin-top: 40vh;
+}
+
+.search-bar {
+    text-align: right;
+    background-color: rgba(0, 0, 0, 0.59);
+}
+
+.categories-search-bar {
+    text-align: right;
+}
+
+.categories-search-bar form {
+    display: flex;
+}
+
+.categories-search-bar input[type="text"] {
+    flex: 1;
+    margin-right: 5px;
+}
+
+.flames-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.flames {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../images/flames4.gif');
+    background-size: 100% 100%;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+
+/* BEGIN NAVBAR ################################################*/
+.navbar-container {
+    background-color: #333;
+    width: 100%;
+}
+
+.navbar {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 0px;
+    margin: 0 auto;
+}
+
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    /* Get rid of the underline */
+    padding: 20px 30px;
+}
+
+.navbar a:hover {
+    background-color: #555;
+}
+
+@media (max-width: 600px) {
+    .navbar-container {
+        height: 250px;
+        width: 250px;
+        position: absolute;
+        top: 540px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar a {
+        padding: 10px 30px;
+    }
+}
+
+/* END NAVBAR ##################################################*/
+
+
+/* BEGIN SPLASH STYLING ########################################*/
+.splash {
+    display: none;
+    /* HIDDEN for dev purposes */
+
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: blue;
+    margin: 10% auto;
+    width: 50%;
+    height: 50%;
+}
+
+.splash h1 {
+    color: white;
+    text-align: center;
+}
+
+/* affects the buttons container */
+.splash .buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* affects the buttons themselves */
+.splash .buttons button {
+    font-size: 16px;
+    padding: 10px 20px;
+}
+
+/* END SPLASH STYLING ##########################################*/
+
+
+
+/* BEGIN SIDEBAR (CATEGORIES) ##################################*/
+/* Wills test */
+.sidebar-container {
+    position: absolute;
+    /* top: 158px; */
+    width: 250px;
+    height: 100%;
+    z-index: 1;
+}
+
+.sidebar {
+    background-color: rgba(0, 0, 0, 0.59);
+    background-size: 100% 100%;
+    color: rgb(114, 24, 24);
+    padding: 10px;
+}
+
+.sidebar h2 {
+    margin-bottom: 0px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    /* margin-bottom: 10px; */
+    position: relative;
+}
+
+
+.sidebar ul li a {
+    display: block;
+    padding: 10px;
+    border: 3px solid rgb(0, 0, 155);
+    color: white;
+    text-decoration: none;
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.59);
+    background: url('../images/wavingflag4.gif');
+    background-size: 100% 100%;
+
+}
+
+.sub-categories {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background-color: rgba(0, 0, 0, 0.59);
+    padding: 10px;
+    border: 1px solid blue;
+    /* border-radius: 5px; */
+    white-space: nowrap;
+    z-index: 1;
+}
+
+.sidebar ul li:hover .sub-categories {
+    display: block;
+}
+
+/* END SIDEBAR (CATEGORIES) ####################################*/
+
+
+/* BEGIN BODY PARAGRAPH ########################################*/
+.body-text {
+    background-color: rgba(0, 0, 0, 0.644);
+    color: white;
+    position: relative;
+    margin-left: 280px;
+    margin-right: 10%;
+    padding: 14px;
+}
+
+.body-text h2 {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.body-text p {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    line-height: 2;
+}
+
+/* END BODY PARAGRAPH ##########################################*/
+
+
+
+
+/* BEGIN VIDEO CONTAINER #######################################*/
+.video-container {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    z-index: -100;
+    object-fit: cover;
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* END VIDEO CONTAINER #########################################*/
+
+
+/* BEGIN CART SECTION ##########################################*/
+
+#shopping-cart-main{ 
+    display: flex;
+    justify-content: center;
+    
+}
+#checkout-box { 
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 60px;
+    padding-bottom: 40px;
+    /* background-color: rgba(0, 0, 0, 0.644); */
+    background-color: gray;
+    color: white;
+    
+}
+
+#cart-box {
+    /* The div that has this class also has the body-text class */
+    margin-left: 5vw;
+    margin-right: 0px;
+    background-color: gray;
+    
+}
+#cart-box h4,h2 {
+    color: rgb(114, 24, 24);
+}
+@media (max-width: 600px) {
+    /* if screen is narrower than 600px, move checkout button below
+       cart items */
+    #shopping-cart-main{ 
+        display: block;
+    }
+    #checkout-box {
+        float: right;
+    }
+}
+
+.cart-item img {
+    height: 100px;
+    margin-right: 10px;
+}
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 3px solid rgb(114, 24, 24);;
+}
+
+
+/* END CART SECTION ############################################*/
+
+
+.flex-container img {
+    height: 300px;
+    width: auto;
+}
+
+
+/* PRODUCTS CSS */
+
+#category-name {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 40px;
+
+}
+
+.flex-item-products {
+    /* display: flex;
+    align-items: center;
+    margin: 130px;
+    background-color: gray;
+    text-align: center; */
+
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    /* border: 3px solid rgb(114, 24, 24);; */
+}
+
+.flex-container-under-categories {
+    display: flex;
+    justify-content: center;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+    /* for sidebar */
+    /* margin-left: 290px; */
+}
+
+.flex-item-products img {
+    /* width: 300px;
+    height: auto;
+    margin: 30px; */
+
+    width: 100%;
+    height: auto;
+    flex-shrink: 0;
+    /* margin: 10px; */
+}
+
+/* OG */
+/* .product {
+    margin: 90px;
+} */
+
+/* .product {
+    margin: 90px;
+    width: 300px;
+    height: auto;
+} */
+
+/* ADDED */
+.product {
+    margin: 90px;
+    width: 30%;
+    height: auto;
+}
+
+.product img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* STOP ADDED */
+
+
+/* DETAILS CSS */
+.flex-item-details {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    background-color: gray;
+    text-align: center;
+}
+
+.flex-item-details img {
+    width: 300px;
+    height: auto;
+    margin: 10px;
+}
+
+.description {
+    margin-left: 40px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    text-align: left;
+    flex: 1;
+}
+
+/* PRODUCTS BUTTON */
+.view-details {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.view-details:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    color: #fff;
+}
