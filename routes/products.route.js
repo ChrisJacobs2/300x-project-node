@@ -12,15 +12,14 @@ router.get("/search", ensureAuth, productscontroller.searchByName);
 router.delete("/delete/:id", ensureAuth, productscontroller.deleteById);
 router.put("/update/:id", ensureAuth, productscontroller.update)
 
-// Implement later
 
-// function ensureAuth(req, res, next) {
-//   req.session.returnTo = req.originalUrl;
-//   if (!req.isAuthenticated()) {
-//     return res.redirect('/auth/login');
-//   }
-//   //console.log("$$$$$" + req.session.returnTo)
-//   next();
-// }
+function ensureAuth(req, res, next) {
+  req.session.returnTo = req.originalUrl;
+  if (!req.isAuthenticated()) {
+    return res.redirect('/auth/login');
+  }
+  //console.log("$$$$$" + req.session.returnTo)
+  next();
+}
 
 module.exports = router;

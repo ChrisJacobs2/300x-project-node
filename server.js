@@ -4,7 +4,7 @@ const app = express();
 const path = require("path");
 const multer = require("multer");
 app.use(multer().none());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true })); // used for auth
 app.use(express.json());
 
 
@@ -15,8 +15,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //routes
-// const productsRouter = require("./routes/products.route");
-// app.use("/products", productsRouter);
+const productsRouter = require("./routes/products.route");
+app.use("/products", productsRouter);
 
 
 //Home Page
