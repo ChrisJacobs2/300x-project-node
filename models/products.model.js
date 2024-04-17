@@ -1,5 +1,5 @@
 "use strict";
-const db = require("./db-conn");
+const db = require("../models/db-conn");
 const path = require("path");
 
 function getAll() {
