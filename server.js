@@ -2,9 +2,10 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+
 const multer = require("multer");
 app.use(multer().none());
-app.use(express.urlencoded({ extended: true })); // used for auth
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
@@ -21,7 +22,7 @@ app.use("/products", productsRouter);
 
 //Home Page
 app.get("/", (req, res) => {
-  res.render("index", { title: 'Home Page', user: req.user });
+  res.render("index", { title: 'Home Page' });
 });
 
 const PORT = process.env.PORT || 8000;
