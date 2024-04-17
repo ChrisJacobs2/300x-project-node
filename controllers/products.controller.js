@@ -11,10 +11,10 @@ app.use(express.json());
 const model = require("../models/products.model");
 
 function getAll(req, res, next) {
-  let meals = model.getAll();
+  let products = model.getAll();
   try {
 
-    res.render("menu-all", { meals: meals, title: 'All Meals' });
+    res.render("products", { products: products, title: 'All Products' });
     // res.json(model.getAll());
   } catch (err) {
     console.error("Error while getting menu ", err.message);

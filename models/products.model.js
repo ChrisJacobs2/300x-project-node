@@ -3,7 +3,7 @@ const db = require("../models/db-conn");
 const path = require("path");
 
 function getAll() {
-  let sql = "SELECT * FROM menu;";
+  let sql = "SELECT * FROM Products;";
   const data = db.all(sql);
   return data;
 };
