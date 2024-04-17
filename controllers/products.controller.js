@@ -11,21 +11,22 @@ app.use(express.json());
 const model = require("../models/products.model");
 
 function getAll(req, res, next) {
-  req.session.returnTo = req.originalUrl;
-  // console.log("*****" + req.session.returnTo) 
   let meals = model.getAll();
-  //console.log(meals);
-  console.log(req.user);
-  res.render("menu-all", { meals: meals, title: 'All Meals', user: req.user });
-  // res.json(model.getAll());
+  try {
 
+    res.render("menu-all", { meals: meals, title: 'All Meals' });
+    // res.json(model.getAll());
+  } catch (err) {
+    console.error("Error while getting menu ", err.message);
+    next(err);
+  }
 }
 
 function getAllByCategory(req, res, next) {
   let category = req.params.category;
   let meals = model.getAllByCategory(category);
   try {
-    res.render("menu-all", { meals: meals, title: '' + category + ' Meals' , user: req.user });
+    res.render("menu-all", { meals: meals, title: '' + category + ' Meals' });
     //res.json(model.getAllByCategory(req.params.category));
   } catch (err) {
     console.error("Error while getting menu ", err.message);
@@ -37,7 +38,7 @@ function getOneById(req, res, next) {
   let id = req.params.id;
   try {
     let meal = model.getOneById(id);
-    res.render("item-details", { meal: meal, title: 'Meal #' + id , user: req.user });
+    res.render("item-details", { meal: meal, title: 'Meal #' + id });
     //res.json(model.getOneById(req.params.id));
   } catch (err) {
     console.error("Error while getting menu ", err.message);
@@ -57,7 +58,7 @@ function createNew(req, res, next) {
     let params = [id, name, category, subcategory, price, cost];
     try {
       model.createNew(params);
-      res.redirect('/menu/all');
+     res.redirect('/menu/all');
     } catch (err) {
       console.error("Error while creating menu ", err.message);
       next(err);
@@ -96,7 +97,7 @@ function searchByName(req, res, next) {
     meals = model.getAll();
   }
   try {
-    res.render("menu-all", { meals: meals, title: '' + term + ' Meals' , user: req.user });
+    res.render("menu-all", { meals: meals, title: '' + term + ' Meals' });
   } catch (err) {
     console.error("Error while getting menu ", err.message);
     next(err);
@@ -107,7 +108,7 @@ function deleteById(req, res, next) {
   let id = req.params.id;
   try {
     model.deleteById(id);
-    res.render("menu-all", { meals: model.getAll(), title: 'Meal #' + id , user: req.user });
+    res.render("menu-all", { meals: model.getAll(), title: 'Meal #' + id });
   } catch (err) {
     console.error("Error while getting menu ", err.message);
     next(err);
