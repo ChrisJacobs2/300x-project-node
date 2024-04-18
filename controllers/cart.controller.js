@@ -15,8 +15,9 @@ const model = require("../models/cart.model");
 // req.cookies.userId
 function getAllById(req, res, next) {
   // const userId = req.cookies.userId;
-  const userId = 1;
-  // let cart_items = model.getAllById();
+  const userId = "1";
+  let cart_items = model.getAllById(userId);
+  console.log("cart_items: ", cart_items);
   try {
     // res.render("cart", { products: products, title: 'All Products' });
     res.render("cart");
