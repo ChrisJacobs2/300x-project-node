@@ -2,11 +2,29 @@
 const db = require("../models/db-conn");
 const path = require("path");
 
-function getAllById() {
-  let sql = "SELECT * FROM Products;";
-  const data = db.all(sql);
+function getAllById(id) {
+  let sql = `
+    SELECT p.productName, p.productDescription, p.productImageURL, p.productPrice, cp.itemQty
+    FROM Products p
+    INNER JOIN CartProducts cp ON p.productID = cp.productID
+    INNER JOIN Carts c ON cp.cartID = c.cartID
+    WHERE c.cookie = ?;
+  `;
+  const data = db.all(sql, id);
   return data;
 };
+
+// function getAllById(id) {
+//     let sql = "SELECT * FROM CartProducts WHERE id =?;";
+//       const data = db.all(sql, id);
+//       return data;
+//   };
+
+// function getAllByCategory(category) {
+//     let sql = "SELECT * FROM menu WHERE category =? ORDER BY name;";
+//     const data = db.all(sql, category);
+//     return data;
+//   };
 
 
 function createNew(params) {
