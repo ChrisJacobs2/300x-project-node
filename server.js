@@ -29,6 +29,8 @@ const productsRouter = require("./routes/products.route");
 app.use("/products", productsRouter);
 const cartRouter = require("./routes/cart.route");
 app.use("/cart", cartRouter);
+const detailsRouter = require("./routes/details.route");
+app.use("/details", detailsRouter);
 
 
 // Create a cookie for the user if it doesn't have one yet. This is used to identify them.
