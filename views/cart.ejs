@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Shopping Cart</title>
-    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <link rel="stylesheet" type="text/css" href="/../styles/styles.css">
 
     <!-- Bookmark/Favorites Icons -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/icon-16.png">
@@ -39,8 +39,32 @@
             <h2>
                 Shopping Cart
             </h2>
+
+            <!-- Iterate over the cart_items table.  -->
+
+            <% let grandSubtotal = 0; %>
+
+            <% cart_items.forEach(item => { %>
+                <% let subtotal = item.productPrice * item.itemQty; %>
+                <% grandSubtotal += subtotal; %>
+                <div class="cart-item">
+                    <img src="<%= item.productImageURL %>" alt="<%= item.productName %>">
+                    <div class="cart-item-info">
+                        <h4 class="cart-item-name"><%= item.productName %></h4>
+                        <p class="cart-item-price">$<%= item.productPrice.toFixed(2) %></p>
+                    </div>
+                    <div class="price-and-quantity">
+                        <p class="cart-item-total">Subtotal: $<%= (item.productPrice * item.itemQty).toFixed(2) %></p>
+                        <div class="quantity-box">
+                            <input type="number" value="<%= item.itemQty %>">
+                            <button class="update">Update Quantity</button>
+                            <button class="delete">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
             <!-- first exmaple item -->
-            <div class="cart-item">
+            <!-- <div class="cart-item">
                 <img src="images/chains0.png" alt="chains0">
                 <div class="cart-item-info">
                     <h4 class="cart-item-name">PREMIUM HEAVY TIRE CHAINS</h4>
@@ -54,9 +78,9 @@
                         <button class="delete">Delete</button>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- second example item -->
-            <div class="cart-item">
+            <!-- <div class="cart-item">
                 <img src="images/parts/Exhaust/chrome-exhaust-stack.jpg" alt="chrome exhaust stack">
                 <div class="cart-item-info">
                     <h4 class="cart-item-name">CHROME EXHAUST STACK</h4>
@@ -70,19 +94,18 @@
                         <button class="delete">Delete</button>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     
-        <!-- this goes to the right -->
-        <!-- 536.99 + 536.99 + 143.99 = 1217.97 -->
-        <!-- 1217.97 * (1.0675) + 15  ~ 1315.18 -->
+        <% let taxRate = 0.0675; %>
+        <% let tax = grandSubtotal * taxRate; %>
+        <% let shipping = 15; %>
+        <% let total = grandSubtotal + tax + shipping; %>
         <div id="checkout-box">
-            <h3>Grand Subtotal: <span id="grand-subtotal">$1217.97</span></h3>
-            <h3>Tax: <span id="calculated-tax">$82.21</span></h3>
-            <!-- We may want to ask Prof Ntini if its okay to raise the
-                 shipping price -->
-            <h3>Shipping: $15</h3>
-            <h3>Total: <span class="calculated-total">$1315.18</span></h3>
+            <h3>Grand Subtotal: <span id="grand-subtotal">$<%= grandSubtotal.toFixed(2) %></span></h3>
+            <h3>Tax: <span id="calculated-tax">$<%= tax.toFixed(2) %></span></h3>
+            <h3>Shipping: $<%= shipping.toFixed(2) %></h3>
+            <h3>Total: <span class="calculated-total">$<%= total.toFixed(2) %></span></h3>
             <button>Checkout</button>
         </div>
     </main>

@@ -4,7 +4,7 @@ const path = require("path");
 
 function getAllById(id) {
   let sql = `
-    SELECT p.productName, p.productDescription, p.productImageURL, p.productPrice, cp.itemQty
+    SELECT p.productName, p.productImageURL, p.productPrice, cp.itemQty
     FROM Products p
     INNER JOIN CartProducts cp ON p.productID = cp.productID
     INNER JOIN Carts c ON cp.cartID = c.cartID

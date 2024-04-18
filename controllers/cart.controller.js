@@ -19,8 +19,8 @@ function getAllById(req, res, next) {
   let cart_items = model.getAllById(userId);
   console.log("cart_items: ", cart_items);
   try {
-    // res.render("cart", { products: products, title: 'All Products' });
-    res.render("cart");
+    res.render("cart", { cart_items: cart_items, title: 'All Products' });
+    // res.render("cart");
     console.log("cookie: ", userId);
     // res.json(model.getAll());
   } catch (err) {
