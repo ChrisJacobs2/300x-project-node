@@ -1,7 +1,10 @@
 # How to run?
 clone repository
+
 set up the database
+
 in console, run "npm install"
+
 then, run "node server.js"
 
 Setting up the database:
