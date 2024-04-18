@@ -21,3 +21,7 @@ function getOneById(req, res, next) {
         next(err);
     }
 }
+
+module.exports = {
+    getOneById,
+};

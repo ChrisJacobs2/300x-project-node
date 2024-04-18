@@ -7,3 +7,7 @@ function getOneById(id) {
     const item = db.get(sql, id);
     return item;
 };
+
+module.exports = {
+    getOneById,
+};
