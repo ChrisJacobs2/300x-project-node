@@ -36,17 +36,32 @@ const model = require("../models/details.model");
     }
 } */
 
-function getOneById(req, res, next) {
+/* function getOneById(req, res, next) {
     let id = req.params.id;
     try {
         let meal = model.getOneById(id);
-        res.render("item-details", { meal: meal, title: 'Meal #' + id });
+        res.render("details", { meal: meal, title: 'Meal #' + id });
         //res.json(model.getOneById(req.params.id));
     } catch (err) {
         console.error("Error while getting menu ", err.message);
         next(err);
     }
+} */
+
+async function getOneById(req, res, next) {
+    let id = req.params.id;
+    try {
+        let product = await model.getOneById(id); // Await the result
+        if (!product) {
+            return res.status(404).json({ error: "Product not found" });
+        }
+        res.render("details", { product: product }); // Pass product as an object
+    } catch (err) {
+        console.error("Error while getting product details ", err.message);
+        next(err);
+    }
 }
+
 
 module.exports = {
     getOneById,
