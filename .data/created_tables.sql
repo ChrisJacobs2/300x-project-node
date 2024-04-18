@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS CartProducts (
     cartID        INT,
     productID     INT,
     itemQty       INT NOT NULL,
+	cookie        TEXT,
     FOREIGN KEY (
         cartID
     )
