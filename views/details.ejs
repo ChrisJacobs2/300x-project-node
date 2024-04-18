@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8">
     <title>Product Details</title>
-    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <link rel="stylesheet" type="text/css" href="/../styles/styles.css">
 
     <!-- Bookmark/Favorites Icons -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/icon-16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/icon-32.png">
-    <link rel="icon" type="image/png" sizes="48x48" href="images/icon-48.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/../images/icon-16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/../images/icon-32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/../images/icon-48.png">
     <script src="scripts/scripts.js" defer></script>
 </head>
 
@@ -89,21 +89,20 @@
                 </div>
             </div> -->
         </header>
+        <h1>Product Details</h1>
+
         <div class="flex-container">
-            <div class="flex-item-details">
-                <img src="images/chains0.png" alt="chains0"><br>
-                <div class="description">
-                    <h1>PREMIUM HEAVY TIRE CHAINS</h1>
-                    <h2>Truck Freaks Depot Premium Tire Chains provide excellent traction when youre cruising your big
-                        rig down an icy mountain.</h2>
-                    <ul>
-                        <li>Provides an additional 20 horsepower to your rig upon installation</li>
-                        <li>Improved torque</li>
-                        <li>Makes your rig look cooler</li>
-                    </ul>
-                    <h2>Price: $143.99</h2>
-                    <!-- <input type="number" class="quantity-input" value="1" min="1"> -->
-                    <button class="add" data-name="#" data-price="#">Add to cart</button>
+            <div class="flex-item-products">
+                <div class="product">
+                    <img src="/../images/<%= product.image %>" alt="<%= product.name %>">
+                    <div class="description">
+                        <h3>
+                            <%= product.productName %>
+                        </h3>
+                        <h3>$<%= product.productPrice.toFixed(2) %>
+                        </h3>
+                        <!-- Add any other product details you want to display -->
+                    </div>
                 </div>
             </div>
         </div>
