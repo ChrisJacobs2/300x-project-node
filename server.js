@@ -23,6 +23,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 //routes
 const productsRouter = require("./routes/products.route");
 app.use("/products", productsRouter);
+const cartRouter = require("./routes/cart.route");
+app.use("/cart", cartRouter);
 
 
 //Home Page
