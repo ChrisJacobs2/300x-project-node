@@ -3,11 +3,16 @@ const express = require("express");
 const app = express();
 const path = require("path");
 
+
 const multer = require("multer");
 app.use(multer().none());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+
+// cookie parser
+const cookieParser = require('cookie-parser');
+app.use(cookieParser('Big_Chungus_ooh_nah_nah')); // super strong secret key
 
 //views
 // USING EJS ENGINE
