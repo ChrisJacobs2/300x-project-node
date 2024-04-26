@@ -41,7 +41,6 @@ function update(params) {
 
 module.exports = {
   getAllById,
-  createNew,
   deleteById,
   update,
 };
