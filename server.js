@@ -7,6 +7,9 @@ const session = require('express-session');
 const app = express();
 const path = require("path");
 
+// database connection
+const db = require("../models/db-conn");
+
 // Google OAuth credentials
 const CLIENT_ID = '30979687573-vc5f7n2hv24cvad93klc84mlfci7gbd6.apps.googleusercontent.com';
 const CLIENT_SECRET = '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';
@@ -36,6 +39,24 @@ passport.use(new GoogleStrategy({
   // TODO: Check the database for the user's id. If we don't find it,
   // we need to create a new user in the database. If we do, then set the user variable to the
   // id, email, etc from the database.
+
+  // Prepare SQL statement
+  const sql = 'INSERT OR IGNORE INTO Users (userID, dateCreated, timeCreated, userEmail, userType) VALUES (?, ?, ?, ?, ?)';
+
+  // Get current date and time
+  const date = new Date().toLocaleDateString();
+  const time = new Date().toLocaleTimeString();
+  const userType = 'customer'; // default user type. Admins must be promoted manually.
+
+  // Execute SQL statement
+  params = [user.id, date, time, user.email, userType];
+
+  const result = db.run(sql, params);
+  console.log(result);
+
+  // get the user
+
+  const userDB = db.get('SELECT * FROM Users WHERE userID = ?', user.id);
   
   return done(null, user);
 }));
@@ -82,7 +103,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const productsRouter = require("./routes/products.route");
 app.use("/products", productsRouter);
 const cartRouter = require("./routes/cart.route");
-// app.use("/cart", cartRouter);
+
 app.use("/cart", ensureAuthenticated, cartRouter);
 const detailsRouter = require("./routes/details.route");
 app.use("/details", detailsRouter);
