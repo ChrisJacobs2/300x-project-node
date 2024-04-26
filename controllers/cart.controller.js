@@ -55,38 +55,16 @@ function getAll(req, res, next) {
   
 }
 
-// TODO: Fix
-function createNew(req, res, next) {
-  let id = parseInt(req.body.id);
-  let name = req.body.name;
-  let category = req.body.category;
-  let subcategory = req.body.subcategory;
-  let price = parseFloat(req.body.price);
-  let cost = parseFloat(req.body.cost);
-  if (id && name && category && subcategory && price && cost) {
-    let params = [id, name, category, subcategory, price, cost];
-    try {
-      model.createNew(params);
-     res.redirect('/menu/all');
-    } catch (err) {
-      console.error("Error while creating menu ", err.message);
-      next(err);
-    }
-  }
-}
-// TODO: Fix
+
+// for admins, they probably should have a separate MVC setup.
 function update(req, res, next) {
   let id = parseInt(req.body.id);
-  let name = req.body.name;
-  let category = req.body.category;
-  let subcategory = req.body.subcategory;
-  let price = parseFloat(req.body.price);
-  let cost = parseFloat(req.body.cost);
-  if (id && name && category && subcategory && price && cost) {
-    let params = [name, category, subcategory, price, cost, id,];
+  let quantity = parseInt(req.body.quantity);
+  if (id && quantity) {
+    let params = [quantity, id];
     try {
       model.update(params);
-      res.render("menu-all", { meals: model.getAll(), title: 'All Meals' });
+      res.sendStatus(203);
     } catch (err) {
       console.error("Error while creating menu ", err.message);
       next(err);
@@ -95,14 +73,14 @@ function update(req, res, next) {
 }
 
 
-// TODO: Fix
+
 function deleteById(req, res, next) {
   let id = req.params.id;
   try {
     model.deleteById(id);
-    res.render("menu-all", { meals: model.getAll(), title: 'Meal #' + id });
+    res.sendStatus(204);
   } catch (err) {
-    console.error("Error while getting menu ", err.message);
+    console.error("Error while deleting cartproduct ", err.message);
     next(err);
   }
 }
@@ -110,7 +88,6 @@ function deleteById(req, res, next) {
 module.exports = {
   getAllById,
   getAll,
-  createNew,
   deleteById,
   update,
 };

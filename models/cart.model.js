@@ -4,7 +4,7 @@ const path = require("path");
 
 function getAllById(id) {
   let sql = `
-    SELECT p.productName, p.productImageURL, p.productPrice, cp.itemQty
+    SELECT p.productName, p.productImageURL, p.productPrice, cp.itemQty, cp.cartProductID
     FROM Products p
     INNER JOIN CartProducts cp ON p.productID = cp.productID
     INNER JOIN Carts c ON cp.cartID = c.cartID
@@ -39,23 +39,15 @@ function createNewCart(userID) {
   return data;
 }
 
-// function createNew(params) {
-//   let sql =
-//     'INSERT INTO menu ("id","name","category","subcategory","price","cost") ' +
-//     "VALUES(?, ?, ?, ?, ?, ?);";
-//   const item = db.run(sql, params);
-//   return item;
-// };
-
 
 function deleteById(id) {
-  let sql = 'DELETE FROM MENU WHERE id =?';
+  let sql = 'DELETE FROM CartProducts WHERE cartProductID =?';
   const response = db.run(sql, id);
   return response;
 };
 
 function update(params) {
-  let sql = 'UPDATE menu SET name =?, category =?,subcategory =?,price =?,cost =? WHERE id =?;';
+  let sql = 'UPDATE cartProducts SET itemQty =? WHERE cartProductID =?;';
   const response = db.run(sql, params);
   return response;
 };
