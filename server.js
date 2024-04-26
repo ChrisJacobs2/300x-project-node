@@ -28,22 +28,32 @@ passport.use(new GoogleStrategy({
 (req, accessToken, refreshToken, profile, done) => {
   // User information retrieved from Google
   const user = {
+      id: profile.id,
       email: profile.emails[0].value,
       displayName: profile.displayName
   };
   // Implement logic to store user data in your database (if needed)
+  
   return done(null, user);
 }));
 
 // Serialize and deserialize user data for session management
 passport.serializeUser((user, done) => {
-  done(null, user.email);
+  done(null, { id: user.id, email: user.email }); 
 });
-passport.deserializeUser((email, done) => {
+passport.deserializeUser((userData, done) => {
   // Simulate fetching user data from your database
-  const user = { email };  // Replace with actual user data retrieval
+  const user = userData;  // Replace with actual user data retrieval
   done(null, user);
 });
+
+// Middleware to ensure user is authenticated
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+      return next();
+  }
+  res.redirect('/');
+}
 
 const multer = require("multer");
 app.use(multer().none());
@@ -69,7 +79,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 const productsRouter = require("./routes/products.route");
 app.use("/products", productsRouter);
 const cartRouter = require("./routes/cart.route");
-app.use("/cart", cartRouter);
+// app.use("/cart", cartRouter);
+app.use("/cart", ensureAuthenticated, cartRouter);
 const detailsRouter = require("./routes/details.route");
 app.use("/details", detailsRouter);
 
@@ -83,11 +94,16 @@ app.get("/", (req, res) => {
 // I guess I'll be eating 50 hot dogs at once.
 app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 app.get('/auth/google/callback', passport.authenticate('google', {
-  successRedirect: '/secret',
+  successRedirect: '/user-info',
   failureRedirect: '/'
 }));
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
   console.log("App listening at http://localhost:" + PORT);
+});
+
+app.get('/user-info', ensureAuthenticated, (req, res) => {
+  console.log("ID: ", req.user.id);
+  res.send('User id printed to console');
 });
