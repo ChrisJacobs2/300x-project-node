@@ -36,10 +36,8 @@ passport.use(new GoogleStrategy({
       email: profile.emails[0].value,
       displayName: profile.displayName
   };
-
-  // TODO: Check the database for the user's id. If we don't find it,
-  // we need to create a new user in the database. If we do, then set the user variable to the
-  // id, email, etc from the database.
+  
+  // Add the user to the database if they don't already exist
 
   // Prepare SQL statement
   const sql = 'INSERT OR IGNORE INTO Users (userID, dateCreated, timeCreated, userEmail, userType) VALUES (?, ?, ?, ?, ?)';
@@ -52,11 +50,7 @@ passport.use(new GoogleStrategy({
   
   // Execute SQL statement
   const result = db.prepare(sql).run(params);
-  console.log(result);
-
-  // get the user
-  //fix this
-  // const userDB = db.get('SELECT * FROM Users WHERE userID = ?', user.id);
+  console.log("User authenticated. SQL request result : ", result);
   
   return done(null, user);
 }));
