@@ -14,14 +14,14 @@ const model = require("../models/cart.model");
 // The cookie is included in the req object, by the cookie-parser middleware. It is accessed via
 // req.cookies.userId
 function getAllById(req, res, next) {
-  // const userId = req.cookies.userId;
+  
+  const user = req.user.id;
   const userId = "1";
   let cart_items = model.getAllById(userId);
-  console.log("cart_items: ", cart_items);
+  // console.log("cart_items: ", cart_items);
   try {
     res.render("cart", { cart_items: cart_items, title: 'All Products' });
     // res.render("cart");
-    console.log("cookie: ", userId);
     // res.json(model.getAll());
   } catch (err) {
     console.error("Error while getting menu ", err.message);

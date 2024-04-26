@@ -14,26 +14,15 @@ function getAllById(id) {
   return data;
 };
 
-// function getAllById(id) {
-//     let sql = "SELECT * FROM CartProducts WHERE id =?;";
-//       const data = db.all(sql, id);
-//       return data;
-//   };
-
-// function getAllByCategory(category) {
-//     let sql = "SELECT * FROM menu WHERE category =? ORDER BY name;";
-//     const data = db.all(sql, category);
-//     return data;
-//   };
 
 
-function createNew(params) {
-  let sql =
-    'INSERT INTO menu ("id","name","category","subcategory","price","cost") ' +
-    "VALUES(?, ?, ?, ?, ?, ?);";
-  const item = db.run(sql, params);
-  return item;
-};
+// function createNew(params) {
+//   let sql =
+//     'INSERT INTO menu ("id","name","category","subcategory","price","cost") ' +
+//     "VALUES(?, ?, ?, ?, ?, ?);";
+//   const item = db.run(sql, params);
+//   return item;
+// };
 
 
 function deleteById(id) {
@@ -52,7 +41,6 @@ function update(params) {
 
 module.exports = {
   getAllById,
-  createNew,
   deleteById,
   update,
 };

@@ -7,6 +7,10 @@ const session = require('express-session');
 const app = express();
 const path = require("path");
 
+// database connection
+const sqlite = require("better-sqlite3");
+const db = new sqlite(path.join(__dirname, ".data", "demo.db"));
+
 // Google OAuth credentials
 const CLIENT_ID = '30979687573-vc5f7n2hv24cvad93klc84mlfci7gbd6.apps.googleusercontent.com';
 const CLIENT_SECRET = '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';
@@ -32,11 +36,23 @@ passport.use(new GoogleStrategy({
       email: profile.emails[0].value,
       displayName: profile.displayName
   };
-
-  // TODO: Check the database for the user's id. If we don't find it,
-  // we need to create a new user in the database. If we do, then set the user variable to the
-  // id, email, etc from the database.
   
+  // Add the user to the database if they don't already exist
+
+  // Prepare SQL statement
+  const sql = 'INSERT OR IGNORE INTO Users (userID, dateCreated, timeCreated, userEmail, userType) VALUES (?, ?, ?, ?, ?)';
+
+  // Get current date and time, and other user data
+  const date = new Date().toLocaleDateString();
+  const time = new Date().toLocaleTimeString();
+  const userType = 'customer'; // default user type. Admins must be promoted manually.
+  let params = [user.id, date, time, user.email, userType];
+  
+  // Execute SQL statement
+  const result = db.prepare(sql).run(params);
+  console.log("User authenticated. SQL request result : ", result);
+  
+  // we could make an sql request for the user, but we already have the information
   return done(null, user);
 }));
 
@@ -82,7 +98,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const productsRouter = require("./routes/products.route");
 app.use("/products", productsRouter);
 const cartRouter = require("./routes/cart.route");
-// app.use("/cart", cartRouter);
+
 app.use("/cart", ensureAuthenticated, cartRouter);
 const detailsRouter = require("./routes/details.route");
 app.use("/details", detailsRouter);
