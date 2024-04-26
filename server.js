@@ -31,7 +31,8 @@ const cartRouter = require("./routes/cart.route");
 app.use("/cart", cartRouter);
 const detailsRouter = require("./routes/details.route");
 app.use("/details", detailsRouter);
-
+const adminRouter = require("./routes/admin.route");
+app.use("/admin", adminRouter);
 
 // Create a cookie for the user if it doesn't have one yet. This is used to identify them.
 // If we end up using google auth, I'll eat 50 hot dogs AT ONCE. 
