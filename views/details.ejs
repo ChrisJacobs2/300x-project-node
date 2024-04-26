@@ -26,12 +26,13 @@
             <!-- Should we put this before anything else, above flames (Will) -->
             <div class="navbar-container">
                 <div class="navbar">
-                    <a href="index.html">Home</a>
-                    <a href="#">Login</a>
+                    <a href="/">Home</a>
+                    <a href="/auth/google">Login</a>
                     <a href="#">About</a>
                     <a href="#">Contact</a>
+                    <a href="/products/all">Products</a>
                     <a href="#">Pimp my Truck&trade;</a>
-                    <a href="cart.html">Cart</a>
+                    <a href="/cart/all">Cart</a>
                 </div>
             </div>
 
@@ -101,6 +102,9 @@
                             <%= product.productName %>
                         </h3>
                         <h3>$<%= product.productPrice.toFixed(2) %>
+                        </h3>
+                        <h3>
+                            <%= product.productDescription %>
                         </h3>
                     </div>
                 </div>
