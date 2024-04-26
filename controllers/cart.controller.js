@@ -29,6 +29,22 @@ function getAllById(req, res, next) {
   }
 }
 
+function getAll(req, res, next) {
+  
+  const user = req.user.id;
+  const userId = "1";
+  let cart_items = model.getAllById(userId);
+  // console.log("cart_items: ", cart_items);
+  try {
+    res.render("cart", { cart_items: cart_items, title: 'All Products' });
+    // res.render("cart");
+    // res.json(model.getAll());
+  } catch (err) {
+    console.error("Error while getting menu ", err.message);
+    next(err);
+  }
+}
+
 // TODO: Fix
 function createNew(req, res, next) {
   let id = parseInt(req.body.id);
@@ -83,6 +99,7 @@ function deleteById(req, res, next) {
 
 module.exports = {
   getAllById,
+  getAll,
   createNew,
   deleteById,
   update,
