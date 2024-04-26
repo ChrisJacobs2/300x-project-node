@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/../images/icon-16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/../images/icon-32.png">
     <link rel="icon" type="image/png" sizes="48x48" href="/../images/icon-48.png">
-    <script src="scripts/scripts.js" defer></script>
+    <script src="/../public/scripts/scripts.js" defer></script>
 </head>
 
 <body>
@@ -41,12 +41,13 @@
         <!-- Should we put this before anything else, above flames (Will) -->
         <div class="navbar-container">
             <div class="navbar">
-                <a href="index.html">Home</a>
-                <a href="#">Login</a>
+                <a href="/">Home</a>
+                <a href="/auth/google">Login</a>
                 <a href="#">About</a>
                 <a href="#">Contact</a>
+                <a href="/products/all">Products</a>
                 <a href="#">Pimp my Truck&trade;</a>
-                <a href="cart.html">Cart</a>
+                <a href="/cart/all">Cart</a>
             </div>
         </div>
 
@@ -55,7 +56,7 @@
 
     <h1 id="category-name">Accessories</h1>
 
-    <div class="flex-container">
+    <div class="flex-container products-container">
         <div class="flex-item-products">
             <% for(let i=0; i < products.length; i++) { %>
                 <div class="product">
@@ -63,96 +64,13 @@
                     <div class="description">
                         <h3><%= products[i].productName %></h3>
                         <h3>$<%= products[i].productPrice.toFixed(2) %></h3>
-                        <a href="details.html" class="view-details">View Details</a>
+                        <a href="/details/item/<%= products[i].productID %>" class="view-details">View Details</a>
                     </div>
                 </div>
             <% } %>
-            <!-- TEMPLATES -->
-
-            
-            <!-- <div class="product">
-                <img src="/../images/chains0.png" alt="chains0">
-                <div class="description">
-                    <h3>PREMIUM HEAVY TIRE CHAINS</h3>
-                    <h3>$143.99</h3>
-                    <a href="details.html" class="view-details">View Details</a>
-                </div>
-            </div> -->
-            <!-- <div class="product">
-                <img src="/../images/chains1.jpg" alt="chains1">
-                <div class="description">
-                    <h3>REINFORCED ROUND CHAINS</h3>
-                    <h3>$279.99</h3>
-                    <a href="details.html" class="view-details">View Details</a>
-                </div>
-            </div>
-            <div class="product">
-                <img src="/../images/chains2.webp" alt="chains2">
-                <div class="description">
-                    <h3>GOLD CHAINS</h3>
-                    <h3>$35,999.99</h3>
-                    <a href="details.html" class="view-details">View Details</a>
-                </div>
-            </div> -->
             
         </div>
     </div>
-    <!-- <div class="flex-container">
-        <div class="flex-item-products">
-            <div class="product">
-                <img src="images/spikes0.avif" alt="spikes0">
-                <div class="description">
-                    <h3>SPOKE WHEELS</h3>
-                    <h3>$399.99</h3>
-                    <a href="details.html" class="view-details">View Details</a>
-                </div>
-            </div>
-            <div class="product">
-                <img src="images/spikes1.webp" alt="spikes1">
-                <div class="description">
-                    <h3>ARMY HUB KIT</h3>
-                    <h3>$499.99</h3>
-                    <a href="details.html" class="view-details">View Details</a>
-                </div>
-            </div>
-            <div class="product">
-                <img src="images/spikes3.jpg" alt="spikes3">
-                <div class="description">
-                    <h3>DALEK HUB KIT</h3>
-                    <h3>$699.99</h3>
-                    <a href="details.html" class="view-details">View Details</a>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- <div class="flex-container">
-        <div class="flex-item-products">
-            <div class="product">
-                <img src="images/exhaust1.jpg" alt="exhaust1">
-                <div class="description">
-                    <h3>1500cc super charger kit</h3>
-                    <h3>$15,000.00</h3>
-                    <a href="details.html" class="view-details">View Details</a>
-                </div>
-            </div>
-            <div class="product">
-                <img src="images/exhaust2.webp" alt="exhaust2">
-                <div class="description">
-                    <h3>180G4 Jet Engine Upgrade Kit</h3>
-                    <h3>$59,719.99</h3>
-                    <a href="details.html" class="view-details">View Details</a>
-                </div>
-            </div>
-            <div class="product">
-                <img src="images/exhaust3.webp" alt="exhaust3">
-                <div class="description">
-                    <h3>"Artemis" Rocket Power Kit</h3>
-                    <h3>$712,979.99</h3>
-                    <a href="details.html" class="view-details">View Details</a>
-                </div>
-            </div>
-        </div>
-    </div> -->
 
 </body>
 

@@ -17,7 +17,7 @@ function getAll(req, res, next) {
     res.render("products", { products: products, title: 'All Products' });
     // res.json(model.getAll());
   } catch (err) {
-    console.error("Error while getting menu ", err.message);
+    console.error("Error while getting products ", err.message);
     next(err);
   }
 }
