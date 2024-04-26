@@ -9,7 +9,7 @@ function getAll() {
 };
 
 function getAllByCategory(category) {
-  let sql = "SELECT * FROM menu WHERE category =? ORDER BY name;";
+  let sql = "SELECT * FROM Products WHERE categoryID =? ORDER BY productID;";
   const data = db.all(sql, category);
   return data;
 };
@@ -46,6 +46,11 @@ function update(params) {
   return response;
 };
 
+function getCategoryName(category) {
+  let sql = 'SELECT categoryName FROM Categories WHERE categoryID =?;';
+  const response = db.get(sql, category);
+  return response;
+}
 
 
 module.exports = {
@@ -56,4 +61,5 @@ module.exports = {
   search,
   deleteById,
   update,
+  getCategoryName,
 };

@@ -24,12 +24,15 @@ function getAll(req, res, next) {
 
 function getAllByCategory(req, res, next) {
   let category = req.params.category;
-  let meals = model.getAllByCategory(category);
+  let products = model.getAllByCategory(category);
+  let catName = model.getCategoryName(category);
+  let title = catName.categoryName + ' Products';
   try {
-    res.render("menu-all", { meals: meals, title: '' + category + ' Meals' });
-    //res.json(model.getAllByCategory(req.params.category));
+
+    res.render("products", { products: products, title: title });
+    // res.json(model.getAll());
   } catch (err) {
-    console.error("Error while getting menu ", err.message);
+    console.error("Error while getting products ", err.message);
     next(err);
   }
 }
