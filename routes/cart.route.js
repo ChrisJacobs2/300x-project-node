@@ -8,7 +8,8 @@ const cartcontroller = require("../controllers/cart.controller");
 
 router.get("/all", cartcontroller.getAll);
 router.delete("/delete/:id", cartcontroller.deleteById);
-router.put("/update/:id", cartcontroller.update)
+router.put("/update/:id", cartcontroller.update);
+router.delete("/checkout", cartcontroller.checkout);
 
 
 

@@ -10,24 +10,6 @@ app.use(express.json());
 
 const model = require("../models/cart.model");
 
-// TODO: finish implementing. We want this to get all CartProducts for a given cartId (the cookes.userId)
-// The cookie is included in the req object, by the cookie-parser middleware. It is accessed via
-// req.cookies.userId
-function getAllById(req, res, next) {
-  
-  const user = req.user.id;
-  const userId = "1";
-  let cart_items = model.getAllById(userId);
-  // console.log("cart_items: ", cart_items);
-  try {
-    res.render("cart", { cart_items: cart_items, title: 'All Products' });
-    // res.render("cart");
-    // res.json(model.getAll());
-  } catch (err) {
-    console.error("Error while getting menu ", err.message);
-    next(err);
-  }
-}
 
 // renders the cart page with all items in the cart
 function getAll(req, res, next) {
@@ -72,7 +54,16 @@ function update(req, res, next) {
   }
 }
 
-
+function checkout(req, res, next) {
+  let userID = req.user.id;
+  try {
+    model.checkout(userID);
+    res.sendStatus(205);
+  } catch (err) {
+    console.error("Error while checking out cart ", err.message);
+    next(err);
+  }
+}
 
 function deleteById(req, res, next) {
   let id = req.params.id;
@@ -86,8 +77,8 @@ function deleteById(req, res, next) {
 }
 
 module.exports = {
-  getAllById,
   getAll,
   deleteById,
   update,
+  checkout,
 };

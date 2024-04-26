@@ -1,4 +1,5 @@
 const quantityBoxes = document.querySelectorAll('.quantity-box');
+const checkoutButton = document.getElementById('checkout-button');
 
 
 
@@ -36,6 +37,18 @@ quantityBoxes.forEach(box => {
     
 });
 
+checkoutButton.addEventListener('click', () => {
+    fetch('/cart/checkout', {
+        method: 'DELETE',
+    })
+    .then(response => {
+        if (response.ok) {
+            window.location.reload();
+        } else {
+            console.error('Failed to checkout');
+        }
+    });
+});
 
 
 

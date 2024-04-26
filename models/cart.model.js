@@ -46,6 +46,25 @@ function deleteById(id) {
   return response;
 };
 
+function checkout(userID) {
+  console.log("Checking out cart for user ", userID);
+    // Delete the CartProducts records
+    let sql = `
+        DELETE FROM CartProducts
+        WHERE CartProducts.cartID IN (
+            SELECT Carts.cartID
+            FROM Carts
+            WHERE Carts.userID = ?
+        )
+    `;
+    db.run(sql, userID);
+
+    // Delete the Cart record
+    sql = 'DELETE FROM Carts WHERE userID = ?';
+    const response = db.run(sql, userID);
+    return response;
+}
+
 function update(params) {
   let sql = 'UPDATE cartProducts SET itemQty =? WHERE cartProductID =?;';
   const response = db.run(sql, params);
@@ -60,4 +79,5 @@ module.exports = {
   update,
   checkCart,
   createNewCart,
+  checkout,
 };
