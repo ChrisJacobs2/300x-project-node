@@ -32,7 +32,10 @@ passport.use(new GoogleStrategy({
       email: profile.emails[0].value,
       displayName: profile.displayName
   };
-  // Implement logic to store user data in your database (if needed)
+
+  // TODO: Check the database for the user's id. If we don't find it,
+  // we need to create a new user in the database. If we do, then set the user variable to the
+  // id, email, etc from the database.
   
   return done(null, user);
 }));
@@ -94,7 +97,7 @@ app.get("/", (req, res) => {
 // I guess I'll be eating 50 hot dogs at once.
 app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 app.get('/auth/google/callback', passport.authenticate('google', {
-  successRedirect: '/user-info',
+  successRedirect: '/',
   failureRedirect: '/'
 }));
 
