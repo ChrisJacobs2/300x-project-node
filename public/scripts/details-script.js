@@ -13,5 +13,16 @@ addToCartButton.addEventListener('click', function() {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({ productID }),
+    })
+    .then(response => {
+        if (response.status === 201) {
+            alert('Item added to cart');
+        } else {
+            throw new Error('Error: ' + response.status);
+        }
+    })
+    .catch(error => {
+        // Handle any errors
+        console.error('Error:', error);
     });
 });

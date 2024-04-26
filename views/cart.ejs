@@ -50,7 +50,7 @@
                 <% let subtotal = item.productPrice * item.itemQty; %>
                 <% grandSubtotal += subtotal; %>
                 <div class="cart-item">
-                    <img src="<%= item.productImageURL %>" alt="<%= item.productName %>">
+                    <img src="/public/images/<%= item.productImageURL %>" alt="<%= item.productName %>">
                     <div class="cart-item-info">
                         <h4 class="cart-item-name"><%= item.productName %></h4>
                         <p class="cart-item-price">$<%= item.productPrice.toFixed(2) %></p>
