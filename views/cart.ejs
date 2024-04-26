@@ -10,6 +10,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="images/icon-16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/icon-32.png">
     <link rel="icon" type="image/png" sizes="48x48" href="images/icon-48.png">
+    <script src="../public/scripts/cart-script.js" defer></script>
 </head>
 
 <body>
@@ -55,7 +56,7 @@
                     </div>
                     <div class="price-and-quantity">
                         <p class="cart-item-total">Subtotal: $<%= (item.productPrice * item.itemQty).toFixed(2) %></p>
-                        <div class="quantity-box">
+                        <div class="quantity-box" data-cart-product-id="<%= item.cartProductID %>">
                             <input type="number" value="<%= item.itemQty %>">
                             <button class="update">Update Quantity</button>
                             <button class="delete">Delete</button>
@@ -63,38 +64,6 @@
                     </div>
                 </div>
             <% }) %>
-            <!-- first exmaple item -->
-            <!-- <div class="cart-item">
-                <img src="images/chains0.png" alt="chains0">
-                <div class="cart-item-info">
-                    <h4 class="cart-item-name">PREMIUM HEAVY TIRE CHAINS</h4>
-                    <p class="cart-item-price">$143.99</p>
-                </div>
-                <div class="price-and-quantity">
-                    <p class="cart-item-total">Subtotal: $143.99</p>
-                    <div class="quantity-box">
-                        <input type="number" value="1">
-                        <button class="update">Update Quantity</button>
-                        <button class="delete">Delete</button>
-                    </div>
-                </div>
-            </div> -->
-            <!-- second example item -->
-            <!-- <div class="cart-item">
-                <img src="images/parts/Exhaust/chrome-exhaust-stack.jpg" alt="chrome exhaust stack">
-                <div class="cart-item-info">
-                    <h4 class="cart-item-name">CHROME EXHAUST STACK</h4>
-                    <p class="cart-item-price">$536.99</p>
-                </div>
-                <div class="price-and-quantity">
-                    <p class="cart-item-total">Subtotal: $1073.98</p>
-                    <div class="quantity-box">
-                        <input type="number" value="2">
-                        <button class="update">Update Quantity</button>
-                        <button class="delete">Delete</button>
-                    </div>
-                </div>
-            </div> -->
         </div>
     
         <% let taxRate = 0.0675; %>
@@ -106,7 +75,7 @@
             <h3>Tax: <span id="calculated-tax">$<%= tax.toFixed(2) %></span></h3>
             <h3>Shipping: $<%= shipping.toFixed(2) %></h3>
             <h3>Total: <span class="calculated-total">$<%= total.toFixed(2) %></span></h3>
-            <button>Checkout</button>
+            <button id="checkout-button">Checkout</button>
         </div>
     </main>
     <!-- 

@@ -71,7 +71,7 @@ function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
       return next();
   }
-  res.redirect('/');
+  res.redirect('/auth/google');
 }
 
 const multer = require("multer");
@@ -93,17 +93,18 @@ const uuid = require('uuid');
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/public', express.static('public'));
 
 // routes
 const productsRouter = require("./routes/products.route");
 app.use("/products", productsRouter);
 const cartRouter = require("./routes/cart.route");
-
 app.use("/cart", ensureAuthenticated, cartRouter);
 const detailsRouter = require("./routes/details.route");
-app.use("/details", detailsRouter);
+app.use("/details", ensureAuthenticated, detailsRouter);
 const adminRouter = require("./routes/admin.route");
 app.use("/admin", adminRouter);
+
 
 // Home Page
 app.get("/", (req, res) => {
