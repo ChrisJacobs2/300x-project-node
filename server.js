@@ -52,6 +52,7 @@ passport.use(new GoogleStrategy({
   const result = db.prepare(sql).run(params);
   console.log("User authenticated. SQL request result : ", result);
   
+  // we could make an sql request for the user, but we already have the information
   return done(null, user);
 }));
 
