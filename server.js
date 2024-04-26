@@ -99,10 +99,11 @@ app.use('/public', express.static('public'));
 const productsRouter = require("./routes/products.route");
 app.use("/products", productsRouter);
 const cartRouter = require("./routes/cart.route");
-
 app.use("/cart", ensureAuthenticated, cartRouter);
 const detailsRouter = require("./routes/details.route");
 app.use("/details", ensureAuthenticated, detailsRouter);
+const adminRouter = require("./routes/admin.route");
+app.use("/admin", adminRouter);
 
 
 // Home Page
