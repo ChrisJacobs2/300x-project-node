@@ -76,9 +76,24 @@ function deleteById(req, res, next) {
   }
 }
 
+function addProduct(req, res, next) {
+  let productID = req.body.productID;
+  let userID = req.user.id;
+  let quantity = 1;
+  let params = [productID, quantity, userID];
+  try {
+    model.addProduct(params);
+    res.sendStatus(201);
+  } catch (err) {
+    console.error("Error while adding product to cart ", err.message);
+    next(err);
+  }
+}
+
 module.exports = {
   getAll,
   deleteById,
   update,
   checkout,
+  addProduct,
 };

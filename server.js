@@ -71,7 +71,7 @@ function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
       return next();
   }
-  res.redirect('/');
+  res.redirect('/auth/google');
 }
 
 const multer = require("multer");
@@ -102,7 +102,7 @@ const cartRouter = require("./routes/cart.route");
 
 app.use("/cart", ensureAuthenticated, cartRouter);
 const detailsRouter = require("./routes/details.route");
-app.use("/details", detailsRouter);
+app.use("/details", ensureAuthenticated, detailsRouter);
 
 
 // Home Page

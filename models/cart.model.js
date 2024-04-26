@@ -71,6 +71,25 @@ function update(params) {
   return response;
 };
 
+// params: productID, quantity, userID
+function addProduct(params) {
+
+  // get the cartID
+  let sql = 'SELECT cartID FROM Carts WHERE userID = ?';
+  let response = db.get(sql, params[2]);
+  let cartID = response.cartID;
+
+  // if the cartID exists, add the product to the cart
+  if (cartID) {
+    sql = 'INSERT INTO CartProducts (cartID, productID, itemQty) VALUES (?, ?, ?)';
+    response = db.run(sql, [cartID, params[0], params[1]]);
+  
+  }
+  
+  return response;
+}
+
+
 
 
 module.exports = {
@@ -80,4 +99,5 @@ module.exports = {
   checkCart,
   createNewCart,
   checkout,
+  addProduct,
 };
