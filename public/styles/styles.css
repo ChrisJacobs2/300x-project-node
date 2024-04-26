@@ -389,9 +389,9 @@ footer {
 
 /* ADDED */
 .product {
-    margin: 0px;
-    width: 100%;
-    flex-basis: 33.33%;
+    margin: 5px;
+    width: 30%;
+    /* flex-basis: 33.33%; */
 }
 
 .product img {
